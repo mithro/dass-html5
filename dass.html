@@ -1,0 +1,58 @@
+<html>
+<head>
+  <title>DASS</title>
+  <script src="../libs/jquery.js"></script>
+  <script src="../libs/pure.js"></script>
+</head>
+
+<script>
+var directive = {
+  '.question':{
+    'question<-questions': {
+      'p': {'.': 'question.text'},
+      'form': {'id': 'question.name'},
+      'input.type': {'value': 'question.value'},
+      'li': {
+        'answer<-answers':{
+          'name':'question.name',
+          'value': 'answer.value',
+          '.': 'answer.text'
+        }
+      }
+    }
+  }
+};
+
+$("#template").render(data, directive);
+
+</script>
+
+<div class="template">
+  <div class="question">
+    <p>Question Text</p>
+    <form>
+      <input class="question" type="hidden">
+      <input class="group" type="hidden">
+      <ul>
+	<li><input type="radio"></li>
+      </ul>
+    </form>
+  </div>
+</div>
+
+<!--
+<div class="template">
+{{#questions}}
+  <div class="question">
+    <p>{{text}}</p>
+    <form id="{{qname}}>
+      <input class="type" type="hidden" value="{{qname}}">
+      <ul>
+      {{#answers}}
+	<li><input type="radio" name={{qname}} value="{{value}}">{{text}}</li>
+      {{/answers}
+      </ul>
+    </form>
+  </div>
+{{/questions}}
+-->
